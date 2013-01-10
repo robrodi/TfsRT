@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using TfsRt.DataModel;
 using Windows.UI.ApplicationSettings;
 using TfsRt.Common;
+using TfsRt.Settings;
 
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
@@ -30,7 +31,9 @@ namespace TfsRt
     public sealed partial class ItemsPage : TfsRt.Common.LayoutAwarePage
     {
         Popup _settingsPopup;
-        private double _settingsWidth;
+        private double _settingsWidth = 346;
+        Rect _windowBounds = Window.Current.Bounds;
+
         public ItemsPage()
         {
             this.InitializeComponent();
@@ -40,7 +43,7 @@ namespace TfsRt
 
         void ItemsPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
-            SettingsCommand cmd = new SettingsCommand("sample", "Sound Options", (x) =>
+            SettingsCommand cmd = new SettingsCommand("sample", "Accounts", (x) =>
             {
                 _settingsPopup = new Popup();
                 _settingsPopup.Closed += OnPopupClosed;
@@ -49,9 +52,9 @@ namespace TfsRt
                 _settingsPopup.Width = _settingsWidth;
                 _settingsPopup.Height = _windowBounds.Height;
 
-                MainSettings settingsPane = new MainSettings{
+                var settingsPane = new AccountSettings{
                     Width = _settingsWidth,
-                    Height = Window.Current.Bounds.Height
+                    Height = _windowBounds.Height
                 };
 
                 _settingsPopup.Child = settingsPane;
@@ -61,14 +64,21 @@ namespace TfsRt
             });
 
             args.Request.ApplicationCommands.Add(cmd);
-
-            throw new NotImplementedException();
         }
 
-        private void _settings_Closed(object sender, object e)
+        private void OnWindowActivated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.WindowActivationState == Windows.UI.Core.CoreWindowActivationState.Deactivated)
+            {
+                _settingsPopup.IsOpen = false;
+            }
         }
+
+        private void OnPopupClosed(object sender, object e)
+        {
+            Window.Current.Activated -= OnWindowActivated;
+        }
+
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also

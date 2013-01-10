@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -14,13 +15,27 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace TfsRt.Common
+namespace TfsRt.Settings
 {
-    public sealed partial class MainSettings : UserControl
+    public static class SettingsPage
     {
-        public MainSettings()
+
+    }
+    public sealed partial class AccountSettings : UserControl
+    {
+        public AccountSettings()
         {
             this.InitializeComponent();
+        }
+
+        private void GoBack(object sender, RoutedEventArgs e)
+        {
+            if (this.Parent.GetType() == typeof(Popup))
+            {
+                ((Popup)this.Parent).IsOpen = false;
+            }
+
+            SettingsPane.Show();
         }
     }
 }
