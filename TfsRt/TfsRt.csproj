@@ -104,6 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModel\Model.cs" />
+    <Compile Include="DataModel\Settings\Account.cs" />
     <Compile Include="DataModel\Settings\AccountsModel.cs" />
     <Compile Include="DataModel\SummaryModel.cs" />
     <Compile Include="ItemsPage.xaml.cs">
