@@ -36,7 +36,7 @@
         </Grid.RowDefinitions>
         <Button x:Name="BackButton" Style="{StaticResource BackButtonStyle}" Click="GoBack"/>
         <TextBlock Style="{StaticResource AcccountHeaderStyle}" />
-        <ListView x:Name="AccountsList" Style="{StaticResource AccountsListStyle}"/>
-        <Button Content="Add an account" Style="{StaticResource AddAccountButtonStyle}"/>
+        <ListView x:Name="AccountsList" Style="{StaticResource AccountsListStyle}" ItemsSource="{Binding Accounts, Mode=OneWay}" DisplayMemberPath="Path"/>
+        <Button Content="Add an account" Style="{StaticResource AddAccountButtonStyle}" Click="AddAccountClick"/>
     </Grid>
 </UserControl>
