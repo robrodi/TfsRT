@@ -191,6 +191,12 @@
       <HintPath>..\packages\Rx-Xaml.2.0.21114\lib\WinRT45\System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TfsClient\TfsClient.csproj">
+      <Project>{9426b5cf-47f2-4744-8693-d566804aacf6}</Project>
+      <Name>TfsClient</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
