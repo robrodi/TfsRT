@@ -5,11 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TfsRt.Data;
+using TfsRt.DataModel.Settings;
 
 namespace TfsRt.DataModel
 {
     class Model
     {
+        internal AccountsModel Accounts { get; private set; }
+        
+
         private ObservableCollection<SampleDataGroup> _types = CreateTfsTypeList();
 
         internal SummaryModel Summary { get; private set; }
