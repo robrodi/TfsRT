@@ -1,6 +1,4 @@
-﻿using TfsRt.Data;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -46,10 +44,9 @@ namespace TfsRt
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var group = Model.GetGroup((string)navigationParameter);
+            /*var group = Model.GetGroup((string)navigationParameter);
             this.DefaultViewModel["Group"] = group;
             this.DefaultViewModel["Items"] = group.Items;
-
             if (pageState == null)
             {
                 this.itemListView.SelectedItem = null;
@@ -69,6 +66,8 @@ namespace TfsRt
                     this.itemsViewSource.View.MoveCurrentTo(selectedItem);
                 }
             }
+            */
+              
         }
 
         /// <summary>
@@ -81,8 +80,8 @@ namespace TfsRt
         {
             if (this.itemsViewSource.View != null)
             {
-                var selectedItem = (SampleDataItem)this.itemsViewSource.View.CurrentItem;
-                if (selectedItem != null) pageState["SelectedItem"] = selectedItem.UniqueId;
+                //var selectedItem = (SampleDataItem)this.itemsViewSource.View.CurrentItem;
+                //if (selectedItem != null) pageState["SelectedItem"] = selectedItem.UniqueId;
             }
         }
 

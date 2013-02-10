@@ -24,6 +24,7 @@ To be able to Query / View work items and builds on my tablet.
 I chose a bunch of crap I like to use :)
 
 * [Reactive Extensions] - going to try to base the interactions off of this.
+* [Fody and ReactiveUI] - because the best code is no code.
 * [mvvm] - I'm sure I'll mess it up or get lazy, but i'd like to simplify the ui/model with this pattern
 * [xunit] - Why not play with a different testing framework
 * [fluent assertions] - yep.
@@ -38,6 +39,7 @@ I chose a bunch of crap I like to use :)
 [Add support for networking]:http://msdn.microsoft.com/en-us/library/windows/apps/xaml/hh452751.aspx
 [Storing Credentials]:http://msdn.microsoft.com/en-us/library/windows/apps/xaml/br229572.aspx
 [Reactive Extensions]:http://msdn.microsoft.com/en-us/data/gg577609.aspx
+[Fody and ReactiveUI]:http://simoncropp.com/fodyandreactiveui
 [mvvm]:http://msdn.microsoft.com/en-us/magazine/dd419663.aspx
 [xunit]:http://xunit.codeplex.com/
 [fluent assertions]:http://fluentassertions.codeplex.com/
