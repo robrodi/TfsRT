@@ -55,8 +55,6 @@ namespace TfsRt
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            //var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
             this.DefaultViewModel["Items"] = model.AllGroups;// sampleDataGroups;
         }
 
@@ -70,7 +68,7 @@ namespace TfsRt
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            //var groupId = ((SampleDataGroup)e.ClickedItem).UniqueId;
+            var groupId = ((Item)e.ClickedItem).Id;
             //this.Frame.Navigate(typeof(SplitPage), groupId);
         }
     }

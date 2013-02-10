@@ -9,31 +9,48 @@ using TfsRt.DataModel.Settings;
 
 namespace TfsRt.DataModel
 {
+    public interface IDisplayBits
+    {
+        string Id { get; set; }
+        string Title { get; set; }
+        string ImagePath { get; set; }
+    }
+    public class Item : ReactiveObject, IDisplayBits
+    {
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string ImagePath { get; set; }
+    }
+
+    public class Group<T> : Item
+    {
+        public Group()
+        {
+            Items = new ReactiveCollection<T>();
+        }
+        public ReactiveCollection<T> Items { get; set; }
+    }
+
     public class Model
     {
         public Model()
         {
-            AllGroups = new ReactiveCollection<object>();
+            AllGroups = CreateTfsTypeList();
         }
 
         public AccountsModel Accounts { get; private set; }
         
+        internal SummaryModel Summary { get; private set; }
+        public ReactiveCollection<Item> AllGroups { get; set; }
 
-        //private ObservableCollection<SampleDataGroup> _types = CreateTfsTypeList();
-
-        //internal SummaryModel Summary { get; private set; }
-        public ReactiveCollection<object> AllGroups { get; set;}
-
-
-        //private static ObservableCollection<SampleDataGroup> CreateTfsTypeList()
-        //{
-        // return    new ObservableCollection<SampleDataGroup>(new[] { new SampleDataGroup(0.ToString(), "WorkItems", "Tfs Work Items", string.Empty, "Work Items" )});
-        //}
-
-
-        //internal static SampleDataGroup GetGroup(string p)
-        //{
-        //    return new SampleDataGroup(p, "Hello", "World", string.Empty, "stuffs");
-        //}
+        private static ReactiveCollection<Item> CreateTfsTypeList()
+        {
+            return new ReactiveCollection<Item> 
+            { 
+                new Group<Item> { Id = Guid.NewGuid().ToString(), Title = "Work Items" },
+                new Group<Item> { Id = Guid.NewGuid().ToString(), Title = "Builds" },
+                new Group<Item> { Id = Guid.NewGuid().ToString(), Title = "Reports" },
+            };
+        }
     }
 }

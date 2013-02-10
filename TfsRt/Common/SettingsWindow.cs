@@ -24,7 +24,7 @@
         private SettingsWindow(Rect applicationBoundingRectangle, FrameworkElement settingsElement, double settingWidth = 346)
         {
             _settingsPopup = new Popup();
-            _settingsPopup.Closed += OnPopupClosed;
+            _settingsPopup.Closed += (s, e) => Window.Current.Activated -= OnWindowActivated;
             Window.Current.Activated += OnWindowActivated;
             _settingsPopup.IsLightDismissEnabled = true;
             _settingsPopup.Width = settingWidth;
@@ -45,11 +45,6 @@
             {
                 _settingsPopup.IsOpen = false;
             }
-        }
-
-        private void OnPopupClosed(object sender, object e)
-        {
-            Window.Current.Activated -= OnWindowActivated;
         }
 
         /// <summary>
