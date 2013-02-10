@@ -106,6 +106,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataModel\RoamingDataAdaptor.cs" />
     <Compile Include="Settings\SettingsWindow.cs" />
     <Compile Include="DataModel\Model.cs" />
     <None Include="DataModel\SampleDataSource.cs" />

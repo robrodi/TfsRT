@@ -10,14 +10,16 @@ namespace TfsRt.Settings
     {
         public AccountsModel Model { get; set; }
 
-        public AccountSettings()
-        {
-            Model = new AccountsModel // TODO: Load from storage
+        public AccountSettings() : this(
+            new AccountsModel // TODO: Load from storage
             {
                 Accounts = new ReactiveCollection<Account>{
                     new Account { Path = new Uri("http://hello.world"), UserName = "Rob", Password = "RODI" }
                 }
-            };
+            }){}
+
+        public AccountSettings(AccountsModel model)
+        {
             this.DataContext = Model;
             this.InitializeComponent();
         }

@@ -29,9 +29,16 @@ namespace TfsRt
     public sealed partial class ItemsPage : TfsRt.Common.LayoutAwarePage
     {
         Model model;
-        
+
+        public static Model GetModel()
+        {
+            var adaptor = new RoamingDataAdaptor();
+            adaptor.UpdateModelWithRoamingData();
+            return adaptor.Model;
+        }
+
         #region Constructors
-        public ItemsPage() : this(new Model()) {}
+        public ItemsPage() : this(GetModel()) {}
         public ItemsPage(Model model){
             this.model = model;
             this.InitializeComponent();
@@ -41,7 +48,7 @@ namespace TfsRt
 
         void ItemsPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
-            args.Request.ApplicationCommands.Add(SettingsWindow.Create("sample", "Accounts", new AccountSettings()));
+            args.Request.ApplicationCommands.Add(SettingsWindow.Create("sample", "Accounts", new AccountSettings(model.Accounts)));
         }
 
         /// <summary>

@@ -38,9 +38,9 @@ namespace TfsRt.DataModel
             AllGroups = CreateTfsTypeList();
         }
 
-        public AccountsModel Accounts { get; private set; }
+        public AccountsModel Accounts { get; set; }
         
-        internal SummaryModel Summary { get; private set; }
+        internal SummaryModel Summary { get; set; }
         public ReactiveCollection<Item> AllGroups { get; set; }
 
         private static ReactiveCollection<Item> CreateTfsTypeList()
