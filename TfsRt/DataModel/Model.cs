@@ -9,20 +9,20 @@ using TfsRt.DataModel.Settings;
 
 namespace TfsRt.DataModel
 {
-    class Model
+    public class Model
     {
         public Model()
         {
             AllGroups = new ReactiveCollection<object>();
         }
 
-        internal AccountsModel Accounts { get; private set; }
+        public AccountsModel Accounts { get; private set; }
         
 
         //private ObservableCollection<SampleDataGroup> _types = CreateTfsTypeList();
 
         //internal SummaryModel Summary { get; private set; }
-        internal ReactiveCollection<object> AllGroups { get; set;}
+        public ReactiveCollection<object> AllGroups { get; set;}
 
 
         //private static ObservableCollection<SampleDataGroup> CreateTfsTypeList()

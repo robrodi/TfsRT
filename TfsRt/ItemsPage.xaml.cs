@@ -28,55 +28,21 @@ namespace TfsRt
     /// </summary>
     public sealed partial class ItemsPage : TfsRt.Common.LayoutAwarePage
     {
-        Popup _settingsPopup;
-        private double _settingsWidth = 346;
-        Rect _windowBounds = Window.Current.Bounds;
-
-        public ItemsPage()
-        {
+        Model model;
+        
+        #region Constructors
+        public ItemsPage() : this(new Model()) {}
+        public ItemsPage(Model model){
+            this.model = model;
             this.InitializeComponent();
             SettingsPane.GetForCurrentView().CommandsRequested += ItemsPage_CommandsRequested;
-
         }
+        #endregion
 
         void ItemsPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
-            SettingsCommand cmd = new SettingsCommand("sample", "Accounts", (x) =>
-            {
-                _settingsPopup = new Popup();
-                _settingsPopup.Closed += OnPopupClosed;
-                Window.Current.Activated += OnWindowActivated;
-                _settingsPopup.IsLightDismissEnabled = true;
-                _settingsPopup.Width = _settingsWidth;
-                _settingsPopup.Height = _windowBounds.Height;
-
-                var settingsPane = new AccountSettings{
-                    Width = _settingsWidth,
-                    Height = _windowBounds.Height
-                };
-
-                _settingsPopup.Child = settingsPane;
-                _settingsPopup.SetValue(Canvas.LeftProperty, _windowBounds.Width - _settingsWidth);
-                _settingsPopup.SetValue(Canvas.TopProperty, 0);
-                _settingsPopup.IsOpen = true;
-            });
-
-            args.Request.ApplicationCommands.Add(cmd);
+            args.Request.ApplicationCommands.Add(SettingsWindow.Create("sample", "Accounts", new AccountSettings()));
         }
-
-        private void OnWindowActivated(object sender, Windows.UI.Core.WindowActivatedEventArgs e)
-        {
-            if (e.WindowActivationState == Windows.UI.Core.CoreWindowActivationState.Deactivated)
-            {
-                _settingsPopup.IsOpen = false;
-            }
-        }
-
-        private void OnPopupClosed(object sender, object e)
-        {
-            Window.Current.Activated -= OnWindowActivated;
-        }
-
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -91,7 +57,7 @@ namespace TfsRt
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             //var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
-            this.DefaultViewModel["Items"] = new Model().AllGroups;// sampleDataGroups;
+            this.DefaultViewModel["Items"] = model.AllGroups;// sampleDataGroups;
         }
 
         /// <summary>
