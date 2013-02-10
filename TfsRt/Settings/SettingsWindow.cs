@@ -1,4 +1,4 @@
-﻿namespace TfsRt.Common
+﻿namespace TfsRt.Settings
 {
     using System;
     using Windows.Foundation;
@@ -57,6 +57,18 @@
         public static SettingsCommand Create(string commandId, string label, FrameworkElement child) 
         {
             return new SettingsCommand(commandId, label, x => new SettingsWindow(Window.Current.Bounds, child));
+        }
+
+        internal static void GoBack(UserControl control)
+        {
+            if (control == null) throw new ArgumentNullException("control");
+
+            if (control.Parent.GetType() == typeof(Popup))
+            {
+                ((Popup)control.Parent).IsOpen = false;
+            }
+
+            SettingsPane.Show();
         }
     }
 }

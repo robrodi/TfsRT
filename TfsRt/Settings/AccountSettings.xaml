@@ -14,7 +14,7 @@
             <Setter Property="Text" Value="Accounts"/>
             <Setter Property="Grid.Column" Value="1" />
         </Style>
-        <Style x:Key="AddAccountButtonStyle" TargetType="Button">
+        <Style x:Key="AddAccountButtonStyle" TargetType="ToggleButton">
             <Setter Property="Content" Value="Add an Account"/>
             <Setter Property="Grid.ColumnSpan" Value="2"/>
             <Setter Property="Grid.Row" Value="2"/>
@@ -37,6 +37,6 @@
         <Button x:Name="BackButton" Style="{StaticResource BackButtonStyle}" Click="GoBack"/>
         <TextBlock Style="{StaticResource AcccountHeaderStyle}" />
         <ListView x:Name="AccountsList" Style="{StaticResource AccountsListStyle}" ItemsSource="{Binding Accounts, Mode=OneWay}" DisplayMemberPath="Path"/>
-        <Button Content="Add an account" Style="{StaticResource AddAccountButtonStyle}" Click="AddAccountClick"/>
+        <ToggleButton Content="Add an account" Style="{StaticResource AddAccountButtonStyle}" Click="AddAccountClick"/>
     </Grid>
 </UserControl>

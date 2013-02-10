@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ReactiveUI;
 
 namespace TfsRt.DataModel.Settings
 {
-    public class AccountsModel
+    public class AccountsModel : ReactiveObject
     {
-        public ICollection<Account> Accounts { get; set; }
+        public ReactiveCollection<Account> Accounts { get; set; }
+
+        public static IReactiveCollection<Account> GetAccounts() 
+        {
+            return null;
+        }
     }
 }

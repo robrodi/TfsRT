@@ -106,7 +106,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Common\SettingsWindow.cs" />
+    <Compile Include="Settings\SettingsWindow.cs" />
     <Compile Include="DataModel\Model.cs" />
     <None Include="DataModel\SampleDataSource.cs" />
     <Compile Include="DataModel\Settings\Account.cs" />
