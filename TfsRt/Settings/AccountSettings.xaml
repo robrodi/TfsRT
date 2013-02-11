@@ -37,6 +37,6 @@
         <Button x:Name="BackButton" Style="{StaticResource BackButtonStyle}" Click="GoBack"/>
         <TextBlock Style="{StaticResource AcccountHeaderStyle}" />
         <ListView x:Name="AccountsList" Style="{StaticResource AccountsListStyle}" ItemsSource="{Binding Accounts, Mode=OneWay}" DisplayMemberPath="Path"/>
-        <ToggleButton Content="Add an account" Style="{StaticResource AddAccountButtonStyle}" Click="AddAccountClick"/>
+        <ToggleButton Content="+" Grid.Row="1" Click="AddAccountClick" Style="{StaticResource AddButtonStyle}" />
     </Grid>
 </UserControl>
