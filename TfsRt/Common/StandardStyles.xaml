@@ -1832,16 +1832,16 @@
         <Setter Property="MinWidth" Value="0"/>
         <Setter Property="Width" Value="48"/>
         <Setter Property="Height" Value="48"/>
-        <Setter Property="Margin" Value="36,0,36,36"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
         <Setter Property="FontWeight" Value="Normal"/>
         <Setter Property="FontSize" Value="56"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ToggleButton">
-                    <Grid x:Name="RootGrid">
-                        <Canvas Margin="-1,-16,0,0">
+                    <Grid x:Name="RootGrid" Margin="0,-26,0,0">
+                        <Canvas>
                             <Ellipse x:Name="BoundingCircle" Fill="{StaticResource BackButtonBackgroundThemeBrush}"
                                  Height="36" Width="36" Stroke="{StaticResource BackButtonForegroundThemeBrush}" StrokeThickness="2" Margin="1, 26, 0, 0"/>
                             <Ellipse x:Name="BoundingCircleChecked" Fill="{StaticResource BackButtonForegroundThemeBrush}" Opacity="0"

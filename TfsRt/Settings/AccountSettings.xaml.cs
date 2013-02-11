@@ -1,4 +1,5 @@
 ﻿using ReactiveUI;
+using ReactiveUI.Xaml;
 using System;
 using System.Diagnostics;
 using TfsRt.DataModel.Settings;
@@ -6,21 +7,19 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 namespace TfsRt.Settings
 {
-    public sealed partial class AccountSettings : UserControl
+    public sealed partial class AccountSettings : UserControl, IViewFor<AccountsModel>
     {
-        public AccountsModel Model { get; set; }
-
         public AccountSettings() : this(
             new AccountsModel // TODO: Load from storage
             {
                 Accounts = new ReactiveCollection<Account>{
-                    new Account { Path = new Uri("http://hello.world"), UserName = "Rob", Password = "RODI" }
+                    new Account { Path = "http://hello.world", UserName = "Rob", Password = "RODI" }
                 }
             }){}
 
         public AccountSettings(AccountsModel model)
         {
-            this.DataContext = Model;
+            this.DataContext = ViewModel = model;
             this.InitializeComponent();
         }
 
@@ -31,7 +30,14 @@ namespace TfsRt.Settings
 
         private void AddAccountClick(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(this.AccountsList.Items.Count);
+        }
+
+        public AccountsModel ViewModel { get; set;}
+
+        object IViewFor.ViewModel
+        {
+            get { return ViewModel; }
+            set { ViewModel = (AccountsModel)value; }
         }
     }
 }

@@ -28,12 +28,12 @@ namespace TfsRt
     /// </summary>
     public sealed partial class ItemsPage : TfsRt.Common.LayoutAwarePage
     {
-        Model model;
+        static readonly RoamingDataAdaptor adaptor = new RoamingDataAdaptor();
+        readonly Model model;
 
         public static Model GetModel()
         {
-            var adaptor = new RoamingDataAdaptor();
-            adaptor.UpdateModelWithRoamingData();
+            adaptor.Load();
             return adaptor.Model;
         }
 

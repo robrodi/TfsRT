@@ -107,6 +107,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="DataModel\RoamingDataAdaptor.cs" />
+    <Compile Include="Settings\AccountEditor.xaml.cs">
+      <DependentUpon>AccountEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings\SettingsWindow.cs" />
     <Compile Include="DataModel\Model.cs" />
     <None Include="DataModel\SampleDataSource.cs" />
@@ -165,6 +168,10 @@
     <Page Include="ItemsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Settings\AccountEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Settings\AccountSettings.xaml">
       <SubType>Designer</SubType>

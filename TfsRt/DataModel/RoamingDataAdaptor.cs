@@ -14,24 +14,35 @@ namespace TfsRt.DataModel
             Model = new Model();
         }
         public Model Model { get; set; }
-        public void UpdateModelWithRoamingData()
+        public void Load()
         {
-            UpdateModelWithRoamingData(ApplicationData.Current.RoamingSettings);
+            Load(ApplicationData.Current.RoamingSettings);
         }
 
         // TODO: Make this reflect over MODEL and pull values accordingly.
-        public void UpdateRoamingDataWithModel()
+        public void Save()
         {
             var settings = ApplicationData.Current.RoamingSettings;
-            settings.Values["Accounts"] = Model.Accounts;
+            settings.Values["Accounts"] = Model.Accounts.Serialize();
         }
 
-        private void UpdateModelWithRoamingData(ApplicationDataContainer roamingSettings)
+        private void Load(ApplicationDataContainer roamingSettings)
         {
             if (roamingSettings == null) throw new ArgumentNullException("roamingSettings");
+            LoadAccountInfo(roamingSettings);
+        }
 
-            var accounts = roamingSettings.Values["Accounts"] as AccountsModel;
-            Model.Accounts = accounts ?? new AccountsModel();
+        private void LoadAccountInfo(ApplicationDataContainer roamingSettings)
+        {
+            Model.Accounts = Model.Accounts ?? new AccountsModel();
+
+            var accounts = roamingSettings.Values["Accounts"] as string;
+
+            using (var sr = new MemoryStream(Encoding.UTF8.GetBytes(accounts)))
+            {
+                var accountsFromSetting = new DataContractJsonSerializer(typeof(Account[])).ReadObject(sr) as Account[];
+                Model.Accounts.Accounts.AddRange(accountsFromSetting);
+            }
         }
 
         void DataChangeHandler(ApplicationData appData, object o)
