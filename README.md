@@ -8,6 +8,7 @@ To be able to Query / View work items and builds on my tablet.
 
 ##Notes
 #### Tfs Notes
+Currently, the TFS Client doesn't work with Windows Store apps, so I'll have to connect via rest.
 * [Connecting to TFS]
 * [Querying Work Items]
 * [Creating a bug]
